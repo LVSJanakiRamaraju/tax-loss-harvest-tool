@@ -6,15 +6,22 @@ interface Props {
   selectedCoins: string[];
   onToggle: (coin: string) => void;
   onToggleAll: (checked: boolean) => void;
+  showAll: boolean;
+  toggleShowAll: () => void;
 }
+
 
 const HoldingsTable: React.FC<Props> = ({
   holdings,
   selectedCoins,
   onToggle,
   onToggleAll,
+    showAll,
+    toggleShowAll,
 }) => {
   const allSelected = selectedCoins.length === holdings.length;
+
+  const visibleHoldings = showAll ? holdings : holdings.slice(0, 5);
 
   return (
     <div className="overflow-x-auto mt-6">
@@ -64,6 +71,14 @@ const HoldingsTable: React.FC<Props> = ({
           })}
         </tbody>
       </table>
+      <div className="mt-2 text-right">
+        <button
+            onClick={toggleShowAll}
+            className="text-blue-600 underline hover:text-blue-800"
+        >
+            {showAll ? "View Less" : "View All"}
+        </button>
+        </div>
     </div>
   );
 };

@@ -8,6 +8,8 @@ function App() {
   const [capitalGains, setCapitalGains] = useState<CapitalGains | null>(null);
   const [holdings, setHoldings] = useState<Holding[]>([]);
   const [selectedCoins, setSelectedCoins] = useState<string[]>([]);
+  const [showAll, setShowAll] = useState(false);
+  const toggleShowAll = () => setShowAll(!showAll);
 
   useEffect(() => {
     fetchCapitalGains().then(setCapitalGains);
@@ -70,6 +72,8 @@ function App() {
         selectedCoins={selectedCoins}
         onToggle={toggleSelection}
         onToggleAll={toggleAll}
+        showAll={showAll}
+        toggleShowAll={toggleShowAll}
       />
     </div>
   );
