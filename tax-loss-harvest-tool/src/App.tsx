@@ -1,7 +1,7 @@
-// src/App.tsx
-
 import React, { useEffect, useState } from "react";
 import { fetchCapitalGains, fetchHoldings, CapitalGains, Holding } from "./api/mockApi";
+import PreHarvestCard from "./components/Cards/PreHarvestCard";
+import PostHarvestCard from "./components/Cards/PostHarvestCard";
 
 function App() {
   const [capitalGains, setCapitalGains] = useState<CapitalGains | null>(null);
@@ -17,12 +17,11 @@ function App() {
   }
 
   return (
-    <div className="p-5">
-      <h1>Capital Gains:</h1>
-      <pre>{JSON.stringify(capitalGains, null, 2)}</pre>
-
-      <h1>Holdings:</h1>
-      <pre>{JSON.stringify(holdings, null, 2)}</pre>
+    <div className="p-5 space-y-4">
+      <div className="flex flex-col md:flex-row gap-4">
+        <PreHarvestCard capitalGains={capitalGains} />
+        <PostHarvestCard updatedGains={capitalGains} originalGains={capitalGains} />
+      </div>
     </div>
   );
 }
