@@ -11,18 +11,30 @@ const PreHarvestCard: React.FC<Props> = ({ capitalGains }) => {
   const totalNet = stcgNet + ltcgNet;
 
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-xl w-full md:w-1/2">
-      <h2 className="text-lg font-bold mb-2">Pre-Harvesting</h2>
-      <div className="space-y-1">
-        <p>Short-term Profits: ₹{capitalGains.stcg.profits}</p>
-        <p>Short-term Losses: ₹{capitalGains.stcg.losses}</p>
-        <p>Net Short-term Gains: ₹{stcgNet}</p>
-        <hr className="my-2 border-gray-600" />
-        <p>Long-term Profits: ₹{capitalGains.ltcg.profits}</p>
-        <p>Long-term Losses: ₹{capitalGains.ltcg.losses}</p>
-        <p>Net Long-term Gains: ₹{ltcgNet}</p>
-        <hr className="my-2 border-gray-600" />
-        <p className="font-semibold">Realised Capital Gains: ₹{totalNet}</p>
+    <div className="w-full md:w-1/2 bg-[#1A1A1A] text-white rounded-xl p-6 shadow-md flex flex-col justify-between">
+      <h2 className="text-lg font-semibold mb-4">Pre-Harvesting</h2>
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <p>Profits (Short-term)</p>
+          <p className="font-medium">₹{capitalGains.stcg.profits}</p>
+        </div>
+        <div>
+          <p>Profits (Long-term)</p>
+          <p className="font-medium">₹{capitalGains.ltcg.profits}</p>
+        </div>
+        <div>
+          <p>Losses (Short-term)</p>
+          <p className="font-medium">₹{capitalGains.stcg.losses}</p>
+        </div>
+        <div>
+          <p>Losses (Long-term)</p>
+          <p className="font-medium">₹{capitalGains.ltcg.losses}</p>
+        </div>
+      </div>
+
+      <div className="mt-6 border-t border-gray-700 pt-4">
+        <p className="text-sm">Net Capital Gains</p>
+        <p className="text-2xl font-semibold text-white">₹{totalNet}</p>
       </div>
     </div>
   );
